@@ -1,0 +1,14 @@
+<div class="login-container">
+  <div class="login-box">
+    <h3 class="text-center">Giriş Yap</h3>
+    <form>
+      <div class="form-group">
+        <label for="username">Kullanıcı Adı</label>
+        <input type="text" class="form-control" id="username" placeholder="Kullanıcı adınızı girin"
+          [(ngModel)]="userName" [required]="true" #userNameInput="ngModel" name="userName" minlength="1">
+      </div>
+      <button type="submit" [disabled]="isLoading || userNameInput.invalid" class="btn btn-primary btn-block"
+        (click)="login()">Giriş Yap</button>
+    </form>
+  </div>
+</div>
