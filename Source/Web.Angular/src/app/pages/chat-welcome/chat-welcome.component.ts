@@ -30,7 +30,10 @@ export class ChatWelcomeComponent {
   login() {
     this.isLoading = true;
     localStorage.setItem('userName', this.userName);
-    localStorage.setItem('userId', Guid.create().toString());
+    localStorage.setItem(
+      'userId',
+      Guid.create().toString() + '|' + this.userName
+    );
     this.router.navigate(['/chat']);
   }
 }

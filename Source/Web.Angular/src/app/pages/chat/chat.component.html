@@ -1,1 +1,55 @@
-<p>chat works!</p>
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          Your Identity : {{userInfo?.Guid}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container row col-12">
+  <section class="col-6">
+    <form>
+      <div class="form-group">
+        <label for="userIdentity">User Identity</label>
+        <input type="text" class="form-control" id="userIdentity" required name="userIdentity"
+          [(ngModel)]="messageForm.UserId" #userIdentityInput="ngModel">
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <input type="text" class="form-control" id="message" name="message" required [(ngModel)]="messageForm.Message"
+          #messageInput="ngModel">
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="sendMessage()"
+        [disabled]="messageInput.invalid || userIdentityInput.invalid">Send</button>
+    </form>
+
+    <div>
+      <div class="card">
+        <div class="card-header">
+          Messages
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let item of messageList">
+            <div class="row">
+              <div class="col-6">
+                <span>{{item.SenderUserName}}</span>
+              </div>
+              <div class="col-6">
+                <span>{{item.Message}}</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="col-6">
+    <app-public-chat-lobby *ngIf="centrifuge" [userInfo]="userInfo" [centrifuge]="centrifuge"/>
+  </section>
+
+</div>
